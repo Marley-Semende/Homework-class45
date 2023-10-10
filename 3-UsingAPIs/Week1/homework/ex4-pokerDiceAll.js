@@ -26,16 +26,17 @@ exercise file.
 // Do not change or remove it.
 const rollDie = require('../../helpers/pokerDiceRoller');
 
-function rollDice() {
+function rollDice () {
   // TODO Refactor this function
   const dice = [1, 2, 3, 4, 5];
-  return rollDie(1);
+  const promises = dice.map(dieNumber => rollDie(dieNumber));
+  return Promise.all(promises);
 }
 
-function main() {
+function main () {
   rollDice()
-    .then((results) => console.log('Resolved!', results))
-    .catch((error) => console.log('Rejected!', error.message));
+    .then(results => console.log('Resolved!', results))
+    .catch(error => console.log('Rejected!', error.message));
 }
 
 // ! Do not change or remove the code below
@@ -43,3 +44,6 @@ if (process.env.NODE_ENV !== 'test') {
   main();
 }
 module.exports = rollDice;
+
+/*I think it's because the setTimeout() did not cancel when the promise rejected. When the die rolls off the table, 
+it triggers rejection, but the setTimeout for the remaining dice was already scheduled so it continued to execute */
