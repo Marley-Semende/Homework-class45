@@ -15,6 +15,16 @@ function renderLaureate({ knownName, birth, death }) {
   console.log(`\nName: ${knownName.en}`);
   console.log(`Birth: ${birth.date}, ${birth.place.locationString}`);
   console.log(`Death: ${death.date}, ${death.place.locationString}`);
+  if (birth) {
+    console.log(`Birth: ${birth.date}, ${birth.place.locationString}`);
+  } else {
+    console.log('Birth date not available')
+  }
+  if (death) {
+    console.log(`Death: ${death.date}, ${death.place.locationString}`);
+  } else {
+    console.log('Death date not available');
+  }
 }
 
 function renderLaureates(laureates) {
@@ -23,7 +33,7 @@ function renderLaureates(laureates) {
 
 async function fetchAndRender() {
   try {
-    const laureates = getData(
+    const { laureates } = await getData(
       'http://api.nobelprize.org/2.0/laureates?birthCountry=Netherlands&format=json&csvLang=en'
     );
     renderLaureates(laureates);
