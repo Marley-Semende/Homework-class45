@@ -10,24 +10,21 @@ Full description at: https://github.com/HackYourFuture/Homework/tree/main/3-Usin
 - Does the problem described above still occur? If not, what would be your
   explanation? Add your answer as a comment to be bottom of the file.
 ------------------------------------------------------------------------------*/
-
-function rollDie () {
+function rollDie() {
   return new Promise((resolve, reject) => {
     const randomRollsToDo = Math.floor(Math.random() * 8) + 3;
     console.log(`Die scheduled for ${randomRollsToDo} rolls...`);
 
-    const rollOnce = roll => {
+    const rollOnce = (roll) => {
       const value = Math.floor(Math.random() * 6) + 1;
       console.log(`Die value is now: ${value}`);
 
       if (roll > 6) {
         reject(new Error('Oops... Die rolled off the table.'));
-        return;
       }
 
       if (roll === randomRollsToDo) {
         resolve(value);
-        return;
       }
 
       if (roll < randomRollsToDo) {
@@ -39,15 +36,21 @@ function rollDie () {
   });
 }
 
-function main () {
+function main() {
   rollDie()
-    .then(value => {
+    .then((value) => {
       console.log(`Success! Die settled on ${value}.`);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error.message);
     });
 }
+
+if (process.env.NODE_ENV !== 'test') {
+  main();
+}
+
+module.exports = rollDie;
 
 // ! Do not change or remove the code below
 if (process.env.NODE_ENV !== 'test') {
@@ -55,8 +58,8 @@ if (process.env.NODE_ENV !== 'test') {
 }
 module.exports = rollDie;
 
-/* I think the problem stops occuring because Promises ensure that the execution stops once a resolve or reject 
+/* I think the problem stops occurring because Promises ensure that the execution stops once a resolve or reject 
 is called.
 when the die rolls of the table and trigger reject there 
-wont be anynore scheduled rolls. The return exits the rollOnce()function when error occurs. therefore getting 
+wont be anymore scheduled rolls. The return exits the rollOnce()function when error occurs. therefore getting 
 one error message and no success message when the die rolls off the table */
