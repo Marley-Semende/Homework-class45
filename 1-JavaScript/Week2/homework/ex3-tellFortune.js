@@ -47,7 +47,7 @@ function tellFortune(numKids, partnerNames, locations, jobTitles) {
 }
 
 function main() {
-  const numKids = ['1', '2', '3', '4', '5', 6];
+  const numKids = ['1', '2', '3', '4', '5', '6'];
 
   const partnerNames = ['Lily', 'John', 'Sophia', 'Michael', 'Olivia'];
 

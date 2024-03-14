@@ -40,14 +40,27 @@ function calculateTotalPrice(cart) {
 // ! Test functions (plain vanilla JavaScript)
 function test1() {
   console.log('\nTest 1: calculateTotalPrice should take one parameter');
-  const result = calculateTotalPrice(cartForParty);
-  console.log(result);
+  
+  if (calculateTotalPrice.length === 1) {
+    console.log('Passed');
+  } else {
+    console.log('Failed');
+  }
 }
 
 function test2() {
-  console.log('\nTest 2: return correct output when passed cartForParty');
-  const result = calculateTotalPrice(cartForParty);
-  console.log(result);
+  console.log('\nTest 2: Return correct output when passed cartForParty');
+  
+  const expectedResult = 'Total: €18.72';
+  const actualResult = calculateTotalPrice(cartForParty);
+
+  if (actualResult === expectedResult) {
+    console.log('Passed');
+  } else {
+    console.log('Failed');
+    console.log('Expected:', expectedResult);
+    console.log('Actual:', actualResult);
+  }
 }
 
 function test() {
