@@ -20,7 +20,7 @@ function createObservable() {
       if (typeof subscriber === 'function') {
         subscribers.push(subscriber);
       } else {
-        Error('Not a function');
+        throw new Error('Not a function');
       }
     },
     notify: function (message) {
