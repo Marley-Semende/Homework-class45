@@ -14,3 +14,4 @@ function hijackGoogleLogo() {
 }
 
 hijackGoogleLogo();
+
